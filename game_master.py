@@ -164,6 +164,7 @@ class GameMaster(object):
         Raises:
             Uninitialized Exception: Raises exception if the winning conditions were not set by setWinningCondition
         """
+
         for v in self.required:
             if not self.kb.kb_ask(v):
                 return False

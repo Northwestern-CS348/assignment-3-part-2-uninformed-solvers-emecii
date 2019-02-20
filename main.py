@@ -80,7 +80,10 @@ class KBTest(unittest.TestCase):
 
         movables = th.getMovables()
         self.assertEqual(th.getGameState(), ((1,2,3),(),()))
+        #print(movables[0])
         th.makeMove(movables[0])
+        #for f in th.kb.facts:
+        #    print (f)
         self.assertEqual(th.getGameState(), ((2,3),(1,),()))
         th.reverseMove(movables[0])
         self.assertEqual(th.getGameState(), ((1,2,3),(),()))
@@ -99,6 +102,7 @@ class KBTest(unittest.TestCase):
 
         self.runPlayXSteps(solver, [
             # [step, expected game state]
+            #[1, ((2,3),(1,),())],
             [3, ((3,), (2,), (1,))],
             [13, ((1,), (), (2, 3))],
             [22, ((), (), (1, 2, 3))],
