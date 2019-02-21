@@ -71,13 +71,14 @@ class SolverBFS(UninformedSolver):
         super().__init__(gameMaster, victoryCondition)
         self.queue = Queue()
         self.queue.put([self.currentState, []])
-        self.solveOneStep()
+        self.first_step = False
 
     def gm_init(self):
         state = self.currentState
         while state.parent:
             self.gm.reverseMove(state.requiredMovable)
             state = state.parent
+
     def solveOneStep(self):
         """
         Go to the next state that has not been explored. If a
@@ -92,7 +93,10 @@ class SolverBFS(UninformedSolver):
             True if the desired solution state is reached, False otherwise
         """
         ### Student code goes here
-
+        if self.first_step == False:
+            self.first_step = True
+            if self.solveOneStep():
+                return True
         if self.queue:
             self.gm_init()
             ele = self.queue.get()
